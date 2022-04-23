@@ -3,6 +3,7 @@ package bootstrap
 import (
 	"database/sql"
 	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/juansecardozo/hexagonal-http-api/internal/platform/server"
 	"github.com/juansecardozo/hexagonal-http-api/internal/platform/storage/mysql"
 )
