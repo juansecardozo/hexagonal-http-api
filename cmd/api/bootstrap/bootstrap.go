@@ -1,6 +1,7 @@
 package bootstrap
 
 import (
+	"context"
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -8,17 +9,20 @@ import (
 	"github.com/juansecardozo/hexagonal-http-api/internal/platform/bus/inmemory"
 	"github.com/juansecardozo/hexagonal-http-api/internal/platform/server"
 	"github.com/juansecardozo/hexagonal-http-api/internal/platform/storage/mysql"
+	"time"
 )
 
 const (
-	host = "localhost"
-	port = 8080
+	host            = "localhost"
+	port            = 8080
+	shutdownTimeout = 10 * time.Second
 
-	dbUser = "demo"
-	dbPass = "demo"
-	dbHost = "localhost"
-	dbPort = "6603"
-	dbName = "demo"
+	dbUser    = "demo"
+	dbPass    = "demo"
+	dbHost    = "localhost"
+	dbPort    = "6603"
+	dbName    = "demo"
+	dbTimeout = 5 * time.Second
 )
 
 func Run() error {
@@ -29,11 +33,11 @@ func Run() error {
 	}
 
 	commandBus := inmemory.NewCommandBus()
-	courseRepository := mysql.NewCourseRepository(db)
+	courseRepository := mysql.NewCourseRepository(db, dbTimeout)
 	creatingCourseService := creating.NewCourseService(courseRepository)
 	createCourseCommandHandler := creating.NewCourseCommandHandler(creatingCourseService)
 	commandBus.Register(creating.CourseCommandType, createCourseCommandHandler)
 
-	srv := server.New(host, port, commandBus)
-	return srv.Run()
+	ctx, srv := server.New(context.Background(), host, port, shutdownTimeout, commandBus)
+	return srv.Run(ctx)
 }
