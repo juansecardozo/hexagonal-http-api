@@ -3,9 +3,9 @@ package server
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	mooc "github.com/juansecardozo/hexagonal-http-api/internal"
 	"github.com/juansecardozo/hexagonal-http-api/internal/platform/server/handler/courses"
 	"github.com/juansecardozo/hexagonal-http-api/internal/platform/server/handler/health"
+	"github.com/juansecardozo/hexagonal-http-api/kit/command"
 	"log"
 )
 
@@ -14,15 +14,15 @@ type Server struct {
 	engine   *gin.Engine
 
 	//deps
-	courseRepository mooc.CourseRepository
+	commandBus command.Bus
 }
 
-func New(host string, port uint, courseRepository mooc.CourseRepository) Server {
+func New(host string, port uint, commandBus command.Bus) Server {
 	srv := Server{
 		engine:   gin.New(),
 		httpPort: fmt.Sprintf("%s:%d", host, port),
 
-		courseRepository: courseRepository,
+		commandBus: commandBus,
 	}
 
 	srv.registerRoutes()
@@ -36,5 +36,5 @@ func (s *Server) Run() error {
 
 func (s *Server) registerRoutes() {
 	s.engine.GET("/health", health.CheckHandler())
-	s.engine.POST("/courses", courses.CreateHandler(s.courseRepository))
+	s.engine.POST("/courses", courses.CreateHandler(s.commandBus))
 }

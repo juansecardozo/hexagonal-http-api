@@ -4,6 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/juansecardozo/hexagonal-http-api/internal/creating"
+	"github.com/juansecardozo/hexagonal-http-api/internal/platform/bus/inmemory"
 	"github.com/juansecardozo/hexagonal-http-api/internal/platform/server"
 	"github.com/juansecardozo/hexagonal-http-api/internal/platform/storage/mysql"
 )
@@ -15,7 +17,7 @@ const (
 	dbUser = "demo"
 	dbPass = "demo"
 	dbHost = "localhost"
-	dbPort = "3306"
+	dbPort = "6603"
 	dbName = "demo"
 )
 
@@ -26,8 +28,12 @@ func Run() error {
 		return err
 	}
 
+	commandBus := inmemory.NewCommandBus()
 	courseRepository := mysql.NewCourseRepository(db)
+	creatingCourseService := creating.NewCourseService(courseRepository)
+	createCourseCommandHandler := creating.NewCourseCommandHandler(creatingCourseService)
+	commandBus.Register(creating.CourseCommandType, createCourseCommandHandler)
 
-	srv := server.New(host, port, courseRepository)
+	srv := server.New(host, port, commandBus)
 	return srv.Run()
 }
