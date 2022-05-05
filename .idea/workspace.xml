@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28a6a721-c952-4999-8e88-ecda7a4510f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/internal/platform/server/middleware/logging/logging.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/platform/server/middleware/logging/logging_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/platform/server/middleware/recovery/recovery.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/platform/server/middleware/recovery/recovery_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/creating/event.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/events.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/increasing/service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/platform/bus/inmemory/event.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kit/event/event.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/bootstrap/bootstrap.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/bootstrap/bootstrap.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/course.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/course.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/creating/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/creating/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/creating/service_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/creating/service_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,27 +40,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/secardozo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/secardozo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Go Build.go build github.com/juansecardozo/hexagonal-http-api/cmd/api">
+}</component>
+  <component name="RunManager" selected="Go Test.go test github.com/juansecardozo/hexagonal-http-api/internal/creating">
     <configuration name="go build github.com/juansecardozo/hexagonal-http-api/cmd/api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="hexagonal-http-api" />
       <working_directory value="$PROJECT_DIR$" />
@@ -63,6 +68,17 @@
       <package value="github.com/juansecardozo/hexagonal-http-api/cmd/api" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/cmd/api/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go test github.com/juansecardozo/hexagonal-http-api/internal/creating" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="hexagonal-http-api" />
+      <working_directory value="$PROJECT_DIR$/internal/creating" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/juansecardozo/hexagonal-http-api/internal/creating" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <method v="2" />
     </configuration>
     <configuration name="go test github.com/juansecardozo/hexagonal-http-api/internal/platform/storage/mysql" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -78,6 +94,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.go test github.com/juansecardozo/hexagonal-http-api/internal/creating" />
         <item itemvalue="Go Build.go build github.com/juansecardozo/hexagonal-http-api/cmd/api" />
         <item itemvalue="Go Test.go test github.com/juansecardozo/hexagonal-http-api/internal/platform/storage/mysql" />
       </list>

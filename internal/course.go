@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/google/uuid"
+	"github.com/juansecardozo/hexagonal-http-api/kit/event"
 )
 
 var ErrInvalidCourseID = errors.New("invalid course ID")
@@ -88,6 +89,8 @@ type Course struct {
 	id       CourseID
 	name     CourseName
 	duration CourseDuration
+
+	events []event.Event
 }
 
 // NewCourse creates a new course
@@ -107,11 +110,15 @@ func NewCourse(id, name, duration string) (Course, error) {
 		return Course{}, err
 	}
 
-	return Course{
+	course := Course{
 		id:       idVO,
 		name:     nameVO,
 		duration: durationVO,
-	}, nil
+	}
+
+	course.Record(NewCourseCreatedEvent(idVO.String(), nameVO.String(), durationVO.String()))
+
+	return course, nil
 }
 
 // ID returns the course id
@@ -127,4 +134,17 @@ func (c Course) Name() CourseName {
 // Duration returns the course duration
 func (c Course) Duration() CourseDuration {
 	return c.duration
+}
+
+// Record adds a new domain event.
+func (c Course) Record(evt event.Event) {
+	c.events = append(c.events, evt)
+}
+
+// PullEvents returns the attached domain events.
+func (c Course) PullEvents() []event.Event {
+	evt := c.events
+	c.events = []event.Event{}
+
+	return evt
 }
